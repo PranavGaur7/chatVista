@@ -7,7 +7,7 @@ const socket = require('socket.io')
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json({ limit: '50mb' }));
 app.use(cors({
-    origin: ["https://chatvista-jet.vercel.app/"],
+    origin: ["https://chat-app-jet-eight.vercel.app"],
     methods: ["GET", "POST"],
     credentials: true,
 }))
@@ -19,7 +19,7 @@ app.use(cookieParser())
 
 const io = socket(server, {
     cors: {
-        origin: "https://chatvista-jet.vercel.app/",
+        origin: "https://chat-app-jet-eight.vercel.app",
         credentials: true,
     },
 })
