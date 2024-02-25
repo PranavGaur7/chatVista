@@ -12,7 +12,6 @@ app.use(cors({
     credentials: true,
 }))
 require('dotenv').config();
-// app.use(express.bodyParser({limit: '50mb'}))
 const server = app.listen(process.env.PORT, () => {
     console.log(`listening on port ${process.env.PORT}`);
 })
