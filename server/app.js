@@ -41,7 +41,11 @@ io.on("connection", (socket) => {
     })
 })
 
-
+app.get('*', (req, res, next) => {
+    res.status(200).json({
+        message: 'bad request'
+    })
+})
 
 const userRouter = require('./routers/userRouter');
 const messageRouter = require('./routers/messageRouter');
