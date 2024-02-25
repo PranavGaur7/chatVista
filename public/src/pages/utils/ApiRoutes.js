@@ -1,5 +1,4 @@
-export const host = "https://chat-app-server-sooty.vercel.app"
-// export const host = "http://localhost:5000"
+export const host = "http://localhost:5000"
 export const registerRoutes = `${host}/user/register`
 export const loginRoutes = `${host}/user/login`
 export const getUserRoutes = `${host}/user/getUser`
