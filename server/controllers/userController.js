@@ -14,9 +14,6 @@ module.exports.register = async function register(req, res) {
             res.cookie("login", token, {
                 withCredentials: true,
                 httpOnly: true,
-                path: "/",
-                sameSite: "none",
-                secure: true,
                 maxAge: 3 * 24 * 60 * 60 * 1000
             })
             res.status(200).json({
@@ -60,12 +57,12 @@ module.exports.isLoggedIn = async function isLoggedIn(req, res) {
 module.exports.getUser = async function getUser(req, res) {
     try {
         const data = req.body;
-        const user = await userModel.findOne({ username: data.username });
+        const user = await userModel.findOne({ username:data.username });
         if (user) {
-            return res.json({ user: user })
+            return res.json({ user: user})
         }
         else {
-            res.status(404).json({ msg: "user not found" })
+            res.status(404).json({ msg:"user not found" })
         }
     } catch (error) {
         return res.json({ err: error })
@@ -106,9 +103,6 @@ module.exports.login = async function login(req, res) {
                 res.cookie("login", token, {
                     withCredentials: true,
                     httpOnly: true,
-                    path: "/",
-                    sameSite: "none",
-                    secure: true,
                     maxAge: 3 * 24 * 60 * 60 * 1000
                 })
                 res.json({
@@ -141,15 +135,15 @@ module.exports.getAllUsers = async function getAllUsers(req, res) {
                 users: { $all: [user._id.toString(), uid] },
                 sender: user._id
             }).sort({ updatedAt: -1 }).limit(1);
-
+        
             let txt;
-            if (msg[0]) {
+            if(msg[0]){
                 txt = msg[0].message.text;
             }
-            else {
+            else{
                 txt = "my Last chat with me"
             }
-
+        
             return {
                 email: user.email,
                 username: user.username,
