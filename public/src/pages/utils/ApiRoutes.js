@@ -1,4 +1,4 @@
-export const host = "http://localhost:5000"
+export const host = "https://chat-app-server-nine-kappa.vercel.app"
 export const registerRoutes = `${host}/user/register`
 export const loginRoutes = `${host}/user/login`
 export const getUserRoutes = `${host}/user/getUser`
