@@ -8,6 +8,7 @@ import Contacts from './Contacts';
 import Navbar from './Navbar';
 import Welcome from './Welcome';
 import ChatContainer from './ChatContainer';
+import Spin from './Spin';
 const Chat = ({isLoggedIn,setIsloggedIn}) => {
   const socket = useRef();
   const navigate = useNavigate();
@@ -16,10 +17,12 @@ const Chat = ({isLoggedIn,setIsloggedIn}) => {
   const [currentChat, setCurrentChat] = useState(undefined)
   const [isLoaded, setIsLoaded] = useState(false)
   const [loading,setLoading] = useState(false)
+  const [userLoader,setUserLoader] = useState(false)
   useEffect(() => {
     // if(!isLoggedIn){
     //   navigate('/login')
     // }
+    setUserLoader(true);
     let user;
     const fetchUser = async () => {
       user = await axios.get(loginRoutes, {
@@ -30,6 +33,7 @@ const Chat = ({isLoggedIn,setIsloggedIn}) => {
       }
       else {
         setCurrentUser(user.data);
+        setUserLoader(false);
       }
       setIsLoaded(true)
     }
@@ -59,14 +63,17 @@ const Chat = ({isLoggedIn,setIsloggedIn}) => {
   }
   return (
     <>
-      <Navbar isLoggedIn={isLoggedIn} setIsloggedIn={setIsloggedIn}/>
-      <Container>
+      {!userLoader && <Navbar isLoggedIn={isLoggedIn} setIsloggedIn={setIsloggedIn}/>}
+      {!userLoader && <Container>
 
         {contacts && <Contacts contacts={contacts} loading={loading} setLoading={setLoading} currentuser={currentuser} changeChat={handleChatChange} />}
         {
           isLoaded && currentChat === undefined ? (<Welcome currentuser={currentuser} />) : (<ChatContainer currentChat={currentChat} currentuser={currentuser} socket={socket}/>)
         }
-      </Container>
+      </Container>}
+      {
+        userLoader && <Spin/>
+      }
     </>
   )
 }
