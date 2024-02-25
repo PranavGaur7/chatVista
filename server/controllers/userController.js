@@ -14,6 +14,7 @@ module.exports.register = async function register(req, res) {
             res.cookie("login", token, {
                 withCredentials: true,
                 httpOnly: true,
+                path: "/",
                 maxAge: 3 * 24 * 60 * 60 * 1000
             })
             res.status(200).json({
@@ -103,6 +104,7 @@ module.exports.login = async function login(req, res) {
                 res.cookie("login", token, {
                     withCredentials: true,
                     httpOnly: true,
+                    path: "/",
                     maxAge: 3 * 24 * 60 * 60 * 1000
                 })
                 res.json({
