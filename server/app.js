@@ -41,7 +41,11 @@ io.on("connection", (socket) => {
     })
 })
 
-
+app.get('/',(req,res)=>{
+    res.send({
+        msg:"app created"
+    })
+})
 
 const userRouter = require('./routers/userRouter');
 const messageRouter = require('./routers/messageRouter');
