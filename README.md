@@ -31,24 +31,23 @@ Follow these steps to run the project locally:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/real-time-chat-app.git
-cd real-time-chat-app
+git clone https://github.com/PranavGaur7/chatVista.git
+cd chatVista
 ````
 
-### 2. Install backend dependencies
 
-```bash
-cd server
-npm install
-npm start
-```
-
-### 3. Install frontend dependencies
+### 2. Install frontend dependencies
 
 ```bash
 cd client
 npm install
-npm start
+```
+### 3. Install backend dependencies
+
+```bash
+cd server
+npm install
+npm run both
 ```
 
 ### 4. Open in browser
